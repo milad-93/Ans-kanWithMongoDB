@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Ansökan.Models.Apartment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add new Apartment", "Create")
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.elevator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.balcony)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.squareMeter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.floor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+  
+    <td>
+        @Html.DisplayFor(modelItem => item.adress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.elevator)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nOfRooms)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.balcony)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.squareMeter)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.floor)
+    </td>
+    <td>
+        @Html.ActionLink("Update", "Edit", new { id = item._id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item._id })
+    </td>
+</tr>
+}
+
+</table>
