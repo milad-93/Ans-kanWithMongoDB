@@ -1,12 +1,12 @@
 ﻿using Ansökan.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System;
 
 namespace Ansökan.Controllers
 {
@@ -21,15 +21,23 @@ namespace Ansökan.Controllers
         // GET: Apartment
         public ActionResult Index()
         {
-            var client = new MongoClient(ConnectionClient);
-            var database = client.GetDatabase(DataBaseName);
-            //Will convert my Apartment collection of BSON to list of object of Apartment
-            List<Apartment> ListOfAddedApartments = database.GetCollection<Apartment>(CollectionName).AsQueryable<Apartment>().ToList();
-            return View(ListOfAddedApartments);
+            try
+            {
+                var client = new MongoClient(ConnectionClient);
+                var database = client.GetDatabase(DataBaseName);
+                //Will convert my Apartment collection of BSON to list of object of Apartment
+                List<Apartment> ListOfAddedApartments = database.GetCollection<Apartment>(CollectionName).AsQueryable().ToList();
+                return View(ListOfAddedApartments);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        
             
         }
 
-     
         public ActionResult Create()
         {
             return View();
@@ -45,11 +53,10 @@ namespace Ansökan.Controllers
                 var client = new MongoClient(ConnectionClient);
                 var database = client.GetDatabase(DataBaseName);
                 var documentCollection = database.GetCollection<BsonDocument>(CollectionName);
-               
-                //uniqe id
-                apartment._id = ObjectId.GenerateNewId();
+                                  
+               apartment._id = ObjectId.GenerateNewId();
 
-                string apartmentJSON = Newtonsoft.Json.JsonConvert.SerializeObject(apartment);
+               string apartmentJSON = Newtonsoft.Json.JsonConvert.SerializeObject(apartment);
                 MongoDB.Bson.BsonDocument newApartmentDocument = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(apartmentJSON);
 
                 documentCollection.InsertOneAsync(newApartmentDocument);            

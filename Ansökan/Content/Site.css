@@ -26,3 +26,11 @@ textarea {
 .navbar{
     color:cadetblue;
 }
+
+
+
+.someClass {
+    color: red;
+    font-size:larger;
+    font-style:italic;
+}

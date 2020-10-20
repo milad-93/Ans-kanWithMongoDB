@@ -10,13 +10,12 @@ using System.Web;
 
 namespace Ansökan.Models
 {
- 
     [BsonIgnoreExtraElements] // if not it crash it skips  to deserialize the ignored one
-    public class Apartment
-    {     
+    public class Apply
+    {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        [DisplayName("[POST-ID]")]
+        [DisplayName("[Application-ID]")]
         public ObjectId _id { get; set; }
 
         [BsonIgnore]
@@ -28,31 +27,32 @@ namespace Ansökan.Models
             }
         }
 
-        [Required]
-        [DisplayName("Adress")]
-        public string adress { get; set; }
 
         [Required]
-        [DisplayName("Elevator")]
-        public string elevator { get; set; }
+        [DisplayName("Name")]
+        public string name { get; set; }
+        [Required]
+        [DisplayName("Lastname")]
+        public string lastname { get; set; }
 
         [Required]
-        [DisplayName("Rooms")]
-        public string nOfRooms { get; set; }
+        [DisplayName("Phonenumber")]
+        public string PhoneNumber { get; set; }
         [Required]
-        [DisplayName("Balcony")]
-        public string balcony { get; set; }
+        [DisplayName("Email")]
+        public string email { get; set; }
         [Required]
-        [DisplayName("Squaremeter")]
-        public string squareMeter { get; set; }
+        [DisplayName("Salary")]
+        public string Salary { get; set; }
         [Required]
-        [DisplayName("Floor")]
-        public string floor { get; set; }
+        [DisplayName("Social security number")]
+        public string socSecNum { get; set; }
+        [Required]
+        [DisplayName("[Apartment-ID]")]
+        public string ApartmentId { get; set; }
 
         // converting the id to a string in order to show it in the userinterface
-        public static IMongoCollection<Apartment> apartmentCollection { get; set; }
+
+
     }
-  
-
-
 }

@@ -4,14 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List of available apartments</h2>
 
 <p>
-    @Html.ActionLink("Add new Apartment", "Create")
+  @Html.ActionLink("Add new", "Create")
 </p>
 <table class="table">
     <tr>
-       
+        <th>
+            @Html.DisplayNameFor(model => model._id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.adress)
         </th>
@@ -34,31 +36,35 @@
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-  
-    <td>
-        @Html.DisplayFor(modelItem => item.adress)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.elevator)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.nOfRooms)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.balcony)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.squareMeter)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.floor)
-    </td>
-    <td>
-        @Html.ActionLink("Update", "Edit", new { id = item._id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item._id })
-    </td>
-</tr>
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item._idString)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.elevator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nOfRooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.balcony)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.squareMeter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.floor)
+        </td>
+        <td>
+            @Html.ActionLink("Update", "Edit", new {  id=item._id }) 
+     
+            @Html.ActionLink("Delete", "Delete", new {  id=item._id })
+        </td>
+    </tr>
 }
 
 </table>
